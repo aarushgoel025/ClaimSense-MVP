@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    @apply h-full;
+  }
+  body {
+    @apply bg-background font-sans text-gray-800 antialiased;
+  }
+}
+
+@layer components {
+  /* Animated mesh background */
+  .mesh-bg {
+    background-color: #F8F9FB;
+    background-image:
+      radial-gradient(at 20% 20%, rgba(43, 127, 249, 0.10) 0px, transparent 55%),
+      radial-gradient(at 80% 10%, rgba(27, 58, 107, 0.08) 0px, transparent 45%),
+      radial-gradient(at 60% 80%, rgba(22, 163, 74, 0.06) 0px, transparent 50%);
+    animation: meshShift 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes meshShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-surface rounded-card shadow-card border border-border;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply bg-blue-electric text-white font-semibold px-6 py-3 rounded-btn
+           transition-all duration-200 hover:bg-blue-600 hover:shadow-lg
+           active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply bg-white text-navy font-semibold px-6 py-3 rounded-btn border border-border
+           transition-all duration-200 hover:bg-gray-50 hover:shadow-card
+           active:scale-95;
+  }
+
+  /* Animated spinner */
+  .spinner {
+    width: 56px;
+    height: 56px;
+    border: 4px solid #E2E8F0;
+    border-top-color: #2D7FF9;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Ring gauge */
+  .ring-gauge {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+
+  /* Badge chip */
+  .badge-chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium
+           bg-blue-50 text-blue-electric border border-blue-100;
+  }
+
+  /* Fade-in animation */
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Slide-up animation */
+  .slide-up {
+    animation: slideUp 0.4s ease forwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Drag-and-drop zone */
+  .drop-zone {
+    @apply border-2 border-dashed border-border rounded-card p-12
+           flex flex-col items-center justify-center gap-4 cursor-pointer
+           transition-all duration-200;
+  }
+
+  .drop-zone:hover,
+  .drop-zone.drag-over {
+    @apply border-blue-electric bg-blue-50;
+  }
+
+  /* Textarea - styled */
+  .letter-box {
+    @apply w-full min-h-[360px] bg-gray-50 border border-border rounded-card
+           p-5 font-mono text-sm text-gray-700 resize-y leading-relaxed
+           focus:outline-none focus:ring-2 focus:ring-blue-electric;
+  }
+}
