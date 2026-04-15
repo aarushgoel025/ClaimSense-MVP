@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { jsPDF } from 'jspdf'
 import './index.css'
 
-const API_BASE = 'http://127.0.0.1:8001'
+const API_BASE = 'claimsense-mvp-production.up.railway.app'
 
 const LOADING_MESSAGES = [
   'Extracting rejection details...',
